@@ -1,0 +1,6 @@
+export const totalusers= require('./totalusers.png')
+export const totaldevices= require('./totaldevices.png')
+export const users= require('./users.png')
+export const singleuser= require('./singleuser.png')
+export const backbutton= require('./backbutton.png')
+export const cameraicon= require('./cameraicon.png')
