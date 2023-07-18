@@ -20,13 +20,7 @@ interface IEmployeeData {
   img: any;
 }
  
-interface IEmployeeData {
-  id: number;
-  name: string;
-  email: string;
-  designation: string;
-  img: any;
-}
+ 
 
 const TotalEmployees: React.FC<INavigation> = ({ navigation }) => {
 
@@ -187,7 +181,7 @@ const TotalEmployees: React.FC<INavigation> = ({ navigation }) => {
           return (
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => navigation.navigate('SingleUserDetails')}
+              onPress={() => navigation.navigate('SingleUserDetails',{id:item.id})}
               style={styles.touch}
               key={index}
             >
@@ -202,6 +196,7 @@ const TotalEmployees: React.FC<INavigation> = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
+
           );
         })}
     </View>

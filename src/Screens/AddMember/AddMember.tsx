@@ -13,7 +13,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 interface User {
   name: string;
-  // img:any;
+  img:any;
   EmployeeId: string;
   PhoneNumber: string;
   Email: string;
@@ -36,7 +36,7 @@ const select =useSelector((state:any)=>state.reducer)
 
     const [userValue,setUserValue]=useState<User>({
        name:'',
-      //  img:'',
+       img:'',
        EmployeeId:'',
        PhoneNumber:'',
        Email:'',
@@ -59,7 +59,7 @@ const select =useSelector((state:any)=>state.reducer)
        
       setUserValue({
         name: '',
-        // img:'',
+        img:'',
         EmployeeId: '',
         PhoneNumber: '',
         Email: '',
@@ -100,7 +100,7 @@ const select =useSelector((state:any)=>state.reducer)
         height: 400,
         cropping: true
       }).then(image => {
-        // console.log(image);
+        console.log(image);
         // setState(image.path)
        setUserValue((prev)=>({...prev,img:image.path}))
 
@@ -112,10 +112,10 @@ const select =useSelector((state:any)=>state.reducer)
         height: 400,
         cropping: true
       }).then(image => {
-        // console.log(image);
+        console.log(image);
         // setState(image.path)
-      //  setUserValue((prev)=>({...prev,img:image.path}))
-        // console.log(userValue.img,'pppppppp')
+       setUserValue((prev)=>({...prev,img:image.path}))
+        console.log(userValue.img,'pppppppp')
       });
      }
 
@@ -139,13 +139,13 @@ const select =useSelector((state:any)=>state.reducer)
       <TouchableOpacity style={styles.singleuserimghead} onPress={onSelect}>
         <View style={styles.imgborder}>
           
-            {/* {
+            {
               userValue.img ?<Image source= { {uri: userValue.img} }  style={styles.singleuserimg}/>:
                <Image source={singleuser} 
                 style={{alignSelf:'center',width:80,height:80}}
                />
           }
-           */}
+          
            
         </View>
           <Image source={cameraicon}  style={styles.cameraicon} />

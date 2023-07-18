@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from './Store';
+import { Alert } from 'react-native';
 
 interface User {
   name: string;
@@ -11,6 +12,10 @@ interface User {
   DeviceMemory: string;
   DeviceProcessor: string;
   DiskCapacity: string;
+}
+
+interface DeleteUser{
+  id:number
 }
 
 export const AddUser = createAsyncThunk('user/adduser', async (user: User) => {
@@ -77,7 +82,39 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
 });
 
 
+// export const deleteUser=createAsyncThunk<void,number>('user/deleteUser',async(id:number,thunkAPI)=>{
+export const deleteUser=createAsyncThunk('user/deleteUser',async(id:DeleteUser,thunkAPI)=>{
+  try{
+    const response= await fetch(`https://jsonplaceholder.typicode.com/users/${id}`,{
 
+    method:'DELETE',
+    headers:{
+      Accept:'application/json',
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(id)
+
+    
+
+  }) ;
+  if(response.ok){
+    console.log(id,'sliceid')  
+    
+     
+     fetchUser()
+    // thunkAPI.dispatch(fetchUser())
+  }else{
+    Alert.alert('can not delete')
+  }
+  
+  }
+  catch(error){
+       console.log('can not delete',error)
+       throw error
+  }
+
+})
+        
 
 
 
@@ -99,7 +136,11 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+
+                                                                        
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(AddUser.pending, (state) => {
